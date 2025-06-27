@@ -45,3 +45,7 @@ echo 'eval "$(starship init bash)"' >> ~/.bashrc
 source ~/.bashrc
 @echo "========================="
 
+
+
+test:
+	bats tests
