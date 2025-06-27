@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 echo "📦 Instalando dependencias..."
 sudo apt update && sudo apt install -y \
@@ -8,7 +8,7 @@ sudo apt update && sudo apt install -y \
   libpci-dev libvulkan-dev libgl1-mesa-dev libdrm-dev
 
 echo "📥 Clonando repositorio de fastfetch..."
-git clone https://github.com/fastfetch-cli/fastfetch.git
+git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git
 cd fastfetch
 
 echo "📁 Creando directorio de build..."
@@ -22,6 +22,10 @@ make -j$(nproc)
 
 echo "📂 Instalando binario..."
 sudo make install
+
+# Limpiar archivos de build para mantener ordenado
+cd ../../
+rm -rf fastfetch
 
 echo "✅ fastfetch instalado correctamente."
 # Instruye al usuario a ejecutar fastfetch manualmente

@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-# 📌 Configura la versión y arquitectura
-TARFILE=go${VERSION}.linux-${ARCH}.tar.gz
+# 📌 Configura la versión y arquitectura con valores por defecto
+VERSION="${VERSION:-1.24.4}"
+ARCH="${ARCH:-arm64}"
+TARFILE="go${VERSION}.linux-${ARCH}.tar.gz"
 DOWNLOAD_URL="https://go.dev/dl/${TARFILE}"
 
 echo "⬇️ Descargando Go ${VERSION} para ${ARCH}..."

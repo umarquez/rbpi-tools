@@ -1,1 +1,19 @@
+# Output binaries
 bin/
+
+# Build directories
+build/
+fastfetch/
+
+# Downloaded archives
+*.tar.gz
+*.deb
+fastfetch*.tar.gz
+sonic-pi_*.deb
+
+# OS files
+.DS_Store
+
+# Python pre-commit environment
+.venv/
+

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Detectar shell actual
 CURRENT_SHELL=$(basename "$SHELL")
@@ -34,7 +34,7 @@ if [ -z "$FASTFETCH_SHOWN" ]; then
 fi
 
 # Activar starship
-eval "$(starship init $CURRENT_SHELL)"
+eval "$(starship init \"${CURRENT_SHELL}\")"
 # GLITX_PROMPT_END
 EOF
 
