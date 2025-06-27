@@ -22,8 +22,10 @@ if ! grep -q "/usr/local/go/bin" ~/.profile; then
   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
 fi
 
-# Aplicar cambios al entorno actual
+# Aplicar cambios al entorno actual (desactivar nounset temporalmente para evitar variables no definidas)
+set +u
 source ~/.profile || true
+set -u
 
 echo "🧽 Eliminando archivo descargado..."
 rm "$TARFILE"
