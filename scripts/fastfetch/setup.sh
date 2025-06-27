@@ -24,6 +24,5 @@ echo "📂 Instalando binario..."
 sudo make install
 
 echo "✅ fastfetch instalado correctamente."
+# Instruye al usuario a ejecutar fastfetch manualmente
 echo "👉 Puedes ejecutarlo con el comando: fastfetch"
-
-fastfetch
