@@ -34,7 +34,7 @@ if [ -z "$FASTFETCH_SHOWN" ]; then
 fi
 
 # Activar starship
-eval "$(starship init $SHELL)"
+eval "$(starship init $CURRENT_SHELL)"
 # GLITX_PROMPT_END
 EOF
 
