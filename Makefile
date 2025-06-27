@@ -12,7 +12,7 @@ deps:
 	@echo "Installing dependencies"
 	@echo "-------------------------"
 	sudo apt update
-	sudo apt install -y git cmake build-essential libpci-dev libvulkan-dev libgl1-mesa-dev libdrm-dev screen git-delta shellcheck
+	sudo apt install -y git cmake build-essential libpci-dev libvulkan-dev libgl1-mesa-dev libdrm-dev screen shellcheck
 	@echo "========================="
 
 fastfetch:
