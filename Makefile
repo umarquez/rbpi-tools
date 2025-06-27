@@ -1,6 +1,6 @@
-.PHONY: setup deps fastfetch go sonic-pi starship test lint clean
+.PHONY: setup deps fastfetch go sonic-pi starship pisound test lint clean
 
-setup: deps fastfetch go sonic-pi starship
+setup: deps fastfetch go sonic-pi starship pisound
 	@echo "========================="
 	@echo "Configuring"
 	@echo "-------------------------"
@@ -47,6 +47,12 @@ starship:
 	@echo "➡️  Starship instalado. Configura el prompt con 'make setup' o reinicia tu sesión."
 	@echo "========================="
 
+pisound:
+	@echo "========================="
+	@echo "Installing Pisound"
+	@echo "-------------------------"
+	bash ./scripts/pisound/setup.sh
+	@echo "========================="
 
 
 test:
