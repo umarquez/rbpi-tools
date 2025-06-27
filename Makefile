@@ -1,5 +1,6 @@
-setup: deps fastfetch go sonic-pi starship
 .PHONY: setup deps fastfetch go sonic-pi starship test lint clean
+
+setup: deps fastfetch go sonic-pi starship
 @echo "========================="
 @echo "Configuring"
 @echo "-------------------------"
