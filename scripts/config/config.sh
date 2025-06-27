@@ -28,7 +28,7 @@ sed -i '/# GLITX_PROMPT_BEGIN/,/# GLITX_PROMPT_END/d' "$RC_FILE"
 cat << 'EOF' >> "$RC_FILE"
 # GLITX_PROMPT_BEGIN
 # Mostrar fastfetch solo una vez por sesión interactiva
-if [ -z "$FASTFETCH_SHOWN" ]; then
+if [ -z "${FASTFETCH_SHOWN-}" ]; then
   fastfetch
   export FASTFETCH_SHOWN=true
 fi
