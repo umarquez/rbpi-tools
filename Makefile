@@ -4,7 +4,8 @@ setup: deps fastfetch go sonic-pi starship
 	@echo "========================="
 	@echo "Configuring"
 	@echo "-------------------------"
-	./scripts/config/config.sh
+	bash ./scripts/config/config.sh
+
 	@echo "========================="
 
 deps:
@@ -19,14 +20,14 @@ fastfetch:
 	@echo "========================="
 	@echo "Installing fastfetch"
 	@echo "-------------------------"
-	./scripts/fastfetch/setup.sh
+	bash ./scripts/fastfetch/setup.sh
 	@echo "========================="
 
 go:
 	@echo "========================="
 	@echo "Installing go"
 	@echo "-------------------------"
-	VERSION=1.24.4 ARCH=arm64 ./scripts/go/setup.sh
+	VERSION=1.24.4 ARCH=arm64 bash ./scripts/go/setup.sh
 	@echo "========================="
 
 sonic-pi:
