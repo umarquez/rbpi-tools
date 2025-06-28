@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Exit early if FastFetch is already installed
+if command -v fastfetch >/dev/null 2>&1; then
+  echo "🛑 FastFetch is already installed – skipping installation."
+  exit 0
+fi
+
 set -euo pipefail
 
 echo "📦 Instalando dependencias..."
