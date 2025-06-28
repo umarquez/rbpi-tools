@@ -5,7 +5,6 @@ setup: deps fastfetch go sonic-pi starship pisound
 	@echo "Configuring"
 	@echo "-------------------------"
 	bash ./scripts/config/config.sh
-
 	@echo "========================="
 
 deps:
@@ -34,16 +33,14 @@ sonic-pi:
 	@echo "========================="
 	@echo "Installing Sonic Pi"
 	@echo "-------------------------"
-	wget https://sonic-pi.net/files/releases/v4.5.1/sonic-pi_4.5.1_1_bookworm.arm64.deb
-	sudo apt install ./sonic-pi_4.5.1_1_bookworm.arm64.deb
-	rm sonic-pi_4.5.1_1_bookworm.arm64.deb
+	bash ./scripts/sonic-pi/setup.sh
 	@echo "========================="
 
 starship:
 	@echo "========================="
 	@echo "Installing starship"
 	@echo "-------------------------"
-	curl -sS https://starship.rs/install.sh | sh -s -- -y
+	bash ./scripts/starship/install.sh
 	@echo "➡️  Starship instalado. Configura el prompt con 'make setup' o reinicia tu sesión."
 	@echo "========================="
 
@@ -64,4 +61,4 @@ lint:
 	@find scripts -type f -name '*.sh' | xargs shfmt -d -i 2
 
 clean:
-	rm -rf fastfetch sonic-pi_4.5.1_1_bookworm.arm64.deb fastfetch*.tar.gz *.tar.gz *.deb build
+	rm -rf fastfetch sonic-pi_4.5.1_1_bookworm.arm64.deb fastfetch*.tar.gz *.tar.gz *.deb build go*.tar.gz
