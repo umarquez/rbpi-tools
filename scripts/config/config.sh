@@ -2,41 +2,50 @@
 
 set -euo pipefail
 
-# Detectar shell actual
-CURRENT_SHELL=$(basename "$SHELL")
-RC_FILE=""
-
-if [[ "$CURRENT_SHELL" == "bash" ]]; then
-  RC_FILE="$HOME/.bashrc"
-elif [[ "$CURRENT_SHELL" == "zsh" ]]; then
-  RC_FILE="$HOME/.zshrc"
+# Detect current shell; fall back to environment checks if $SHELL is not set
+if [ -n "${BASH_VERSION-}" ]; then
+  CURRENT_SHELL="bash"
+elif [ -n "${ZSH_VERSION-}" ]; then
+  CURRENT_SHELL="zsh"
+elif [ -n "${SHELL-}" ]; then
+  CURRENT_SHELL=$(basename "$SHELL")
 else
-  echo "❌ Shell no compatible detectado: $CURRENT_SHELL"
-  exit 1
+  CURRENT_SHELL=""
 fi
 
-echo "🧪 Verificando instalaciones..."
-command -v starship >/dev/null 2>&1 || { echo "❌ Starship no está instalado."; exit 1; }
-command -v fastfetch >/dev/null 2>&1 || { echo "❌ Fastfetch no está instalado."; exit 1; }
+RC_FILE=""
 
-echo "⚙️ Configurando $RC_FILE..."
+case "$CURRENT_SHELL" in
+  bash) RC_FILE="$HOME/.bashrc" ;;
+  zsh)  RC_FILE="$HOME/.zshrc" ;;
+  *)
+    echo "❌ Unsupported shell detected: $CURRENT_SHELL"
+    exit 1
+    ;;
+esac
 
-# Elimina bloques antiguos si ya existen
+echo "🧪 Verifying required installations..."
+command -v starship >/dev/null 2>&1 || { echo "❌ Starship is not installed."; exit 1; }
+command -v fastfetch >/dev/null 2>&1 || { echo "❌ Fastfetch is not installed."; exit 1; }
+
+echo "⚙️ Configuring $RC_FILE..."
+
+# Remove previous GLITX prompt blocks if they exist
 sed -i '/# GLITX_PROMPT_BEGIN/,/# GLITX_PROMPT_END/d' "$RC_FILE"
 
 # Agrega nueva configuración
 cat << 'EOF' >> "$RC_FILE"
 # GLITX_PROMPT_BEGIN
-# Mostrar fastfetch solo una vez por sesión interactiva
+# Show fastfetch only once per interactive session
 if [ -z "${FASTFETCH_SHOWN-}" ]; then
   fastfetch
   export FASTFETCH_SHOWN=true
 fi
 
-# Activar starship
+# Activate starship
 eval "$(starship init \"${CURRENT_SHELL}\")"
 # GLITX_PROMPT_END
 EOF
 
-echo "✅ Integración completa."
-echo "🔄 Aplica los cambios con: source $RC_FILE"
+echo "✅ Integration complete."
+echo "🔄 Apply the changes with: source $RC_FILE"
