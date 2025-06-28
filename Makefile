@@ -33,7 +33,7 @@ sonic-pi:
 	@echo "========================="
 	@echo "Installing Sonic Pi"
 	@echo "-------------------------"
-	bash ./scripts/sonic-pi/setup.sh
+	bash ./scripts/sonic-pi/install.sh
 	@echo "========================="
 
 starship:
